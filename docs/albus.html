@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+<meta charset="utf-8">
+<title>サンプル</title>
+<script>
+  function getImage(){
+  //画像ファイル名を配列で保持
+  var arr = ['albus/albus1.JPG', 'albus/albus2.JPG', 'albus/albus3.JPG'];
+  
+  //ランダムで画像ファイルを取得して表示する
+  var obj = document.getElementById("im1");
+  var a = Math.floor(Math.random() * arr.length);
+  obj.src = arr[a];
+}
+</script>
+</head>
+<body>
+  <input type="button" value="ボタン" onclick="getImage();">
+  <div id="area1"> </div>
+  <img id="im1" alt="ここに表示されます。">
+</body>
+</html>
