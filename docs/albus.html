@@ -6,7 +6,13 @@
 <script>
   function getImage(){
   //画像ファイル名を配列で保持
-  var arr = ['albus/albus1.JPG', 'albus/albus2.JPG', 'albus/albus3.JPG'];
+  var arr = [
+      'albus/albus1.JPG', 'albus/albus2.JPG', 'albus/albus3.JPG',
+      'albus/albus4.JPG', 'albus/albus5.JPG', 'albus/albus6.JPG',
+      'albus/albus7.JPG', 'albus/albus8.JPG', 'albus/albus9.JPG',
+      'albus/albus10.JPG', 'albus/albus11.JPG', 'albus/albus12.JPG',
+      'albus/albus13.JPG', 'albus/albus14.JPG', 'albus/albus15.JPG',
+  ];
   
   //ランダムで画像ファイルを取得して表示する
   var obj = document.getElementById("im1");
@@ -16,7 +22,7 @@
 </script>
 </head>
 <body>
-  <input type="button" value="ボタン" onclick="getImage();">
+  <input type="button" value="albusボタン" onclick="getImage();">
   <div id="area1"> </div>
   <img id="im1" alt="ここに表示されます。">
 </body>
