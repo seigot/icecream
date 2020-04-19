@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    canvas { display:block; width:300px; height:300px; background:#ed9; margin:0 auto; }
+  </style>
+  <script>
+    window.onload = function() { init(); };           // ページ読み込み時に init()を実行
+    function init(){ clock(); setInterval('clock();',1000); } // clock()を１秒周期で実行
+    function clock(){ 
+      var now = new Date(); 
+      var canvas = document.getElementById("clockid");
+      var ctx = canvas.getContext('2d');
+      ctx.save();
+      // 設定
+      canvas.width = 300; canvas.height = canvas.width;
+      var w = canvas.width; var h = canvas.height;
+      var center = { x: 0.5*w, y: 0.5*h };
+      var rads = 0.4*w;            // 文字盤の数字の中心までの半径
+      ctx.clearRect(0, 0, w, h);   // 表示域クリア
+      // 文字盤設定
+      ctx.save();
+      ctx.font = "30px 'sans-serif'";
+      ctx.textAlign   ="center";
+      ctx.textBaseline ="middle";
+      ctx.fillStyle   = "rgb(0, 0, 0)";
+      ctx.shadowBlur = 5;
+      for (var i = 0; i < 12; i++) {
+        var radian = i * Math.PI / 6;
+        var x = center.x + rads * Math.sin(radian);
+        var y = center.y - rads * Math.cos(radian);
+        var text = "" + (i == 0 ? "12" : i);
+        ctx.fillText(text, x, y);
+      }
+      ctx.restore();
+      //  中心を移動
+      ctx.translate(center.x,center.y);
+      // 分目盛
+      ctx.save();
+      ctx.strokeStyle = "rgb(170,170,170)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (var i=0;i<60;i++){
+        if (i%5!=0){ ctx.moveTo(100,0); ctx.lineTo(95,0); }
+        ctx.rotate(Math.PI/30);
+      }
+      ctx.stroke();
+      // 時間目盛
+      ctx.strokeStyle = "rgb(100,100,100)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (var i=0;i<60;i++){
+        ctx.moveTo(100,0);
+        ctx.lineTo(85,0);
+        ctx.rotate(Math.PI/6);
+      }
+      ctx.stroke();
+      ctx.restore();
+      // 針の設定
+      var sec = now.getSeconds();
+      var min = now.getMinutes();
+      var hr= now.getHours();
+      hr = hr>=12 ? hr-12 : hr; // 12以上なら「hr-12」、それ以外は「hr」
+      ctx.fillStyle = "rgb(160, 160,160)";
+      // 短針設定
+      ctx.save();
+      ctx.rotate( hr*(Math.PI/6)+ (Math.PI/360)*min+ (Math.PI/21600)*sec )
+      ctx.lineWidth = 7;
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = "rgb(90,90,90)";
+      ctx.beginPath();
+      ctx.moveTo(-3,25);
+      ctx.lineTo(0,-70);
+      ctx.lineTo(3,25);
+      ctx.stroke();
+      ctx.restore();
+      // 長針設定
+      ctx.save();
+      ctx.rotate( (Math.PI/30)*min + (Math.PI/1800)*sec )
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "rgb(0, 0, 0)";
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = "rgb(160, 160,160)";
+      ctx.beginPath();
+      ctx.moveTo(-2,25);
+      ctx.lineTo(0,-99);
+      ctx.lineTo(2,25);
+      ctx.stroke();
+      ctx.restore();
+      // 秒針設定
+      ctx.save();
+      ctx.rotate(sec * Math.PI/30);
+      ctx.strokeStyle = "rgb(207, 170, 77)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0,30);
+      ctx.lineTo(0,-107);
+      ctx.stroke();
+      ctx.restore();
+      // 時計の中心の円板
+      ctx.save();
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "rgb(207, 170, 77)";
+      ctx.fillStyle   = "rgb(200, 160, 70)"; 
+      ctx.arc(0,0,5,0,Math.PI*2,true);
+      ctx.stroke();
+      ctx.fill();
+      ctx.restore();
+    };   // end of clock() --------------------
+  </script>
+</head>
+<body>
+  <canvas id="clockid"></canvas>
+</body>
+</html>
