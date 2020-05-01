@@ -1,3 +1,5 @@
+<script src="node_modules/chart.js/Chart.min.js"></script>
+<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
 // 2) CSVから２次元配列に変換
 function csv2Array(str) {
     var csvData = [];
