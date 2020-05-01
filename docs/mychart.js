@@ -1,4 +1,3 @@
-// 2) CSVから２次元配列に変換
 function csv2Array(str) {
     var csvData = [];
     var lines = str.split("\n");
