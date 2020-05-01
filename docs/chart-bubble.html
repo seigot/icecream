@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+　　 <title>グラフ</title> 
+</head>
+  <body>
+　　 <h1>バブルチャート</h1>
+    <canvas id="myBubbleChart"></canvas>
+    <!-- CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+
+    <script>
+    var ctx = document.getElementById("myBubbleChart");
+    var myBubbleChart = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+            datasets: [
+                {
+                    label:"店系列A",
+                    backgroundColor: "rgba(219,39,91,0.5)",
+                    data:[
+                        {x: 1500,y: 60,r: 35},
+                        {x: 2500,y: 20,r: 30},
+                        {x: 1000,y: 70,r: 25},
+                        {x: 3000,y: 40,r: 30},
+                        {x: 2000,y: 30,r: 40}
+                    ]
+                },
+                {
+                    label:"店系列B",
+                    backgroundColor: "rgba(0,39,91,0.5)",
+                    data:[
+                        {x: 3500,y: 50,r: 15},
+                        {x: 1500,y: 25,r: 30},
+                        {x: 3400,y: 40,r: 25},
+                        {x: 1200,y: 15,r: 10},
+                        {x: 2500,y: 55,r: 40}
+                    ]
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: '店舗別売上状況'
+            },
+            scales: {
+                xAxes: [{
+                    scaleLabel:{
+                        display: true,
+                        labelString: "店舗面積"
+                    },
+                    ticks: {
+                        suggestedMax: 5000,
+                        suggestedMin: 0,
+                        stepSize: 1000,
+                        callback: function(value, index, values){
+                            return  value +  '㎡'
+                        }
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel:{
+                        display: true,
+                        labelString: "利益率"
+                    },
+                    ticks: {
+                        suggestedMax: 80,
+                        suggestedMin: 0,
+                        stepSize: 10,
+                        callback: function(value, index, values){
+                            return  value +  '%'
+                        }
+                    }
+                }]
+            }
+        }
+    })
+    </script>
+
+  </body>
+</html>
