@@ -1,6 +1,3 @@
-
-//
-//
 function csv2Array(str) {
     var csvData = [];
     var lines = str.split("\n");
@@ -16,9 +13,9 @@ function drawBarChart(data) {
     var tmpLabels = [], tmpData1 = [], tmpData2 = [];
     for (var row in data) {
 	tmpLabels.push(data[row][0])
-	    tmpData1.push(data[row][1])
-	    tmpData2.push(data[row][2])
-	    };
+	tmpData1.push(data[row][1])
+	tmpData2.push(data[row][2])
+    };
 
     // 4)chart.jsで描画
     var ctx = document.getElementById("myChart").getContext("2d");
@@ -27,11 +24,11 @@ function drawBarChart(data) {
 	    data: {
 		labels: tmpLabels,
 		datasets: [
-    { label: "Tokyo", data: tmpData1, backgroundColor: "red" },
-    { label: "Osaka", data: tmpData2, backgroundColor: "blue" }
-      ]
+                    { label: "Tokyo", data: tmpData1, backgroundColor: "red" },
+                    { label: "Osaka", data: tmpData2, backgroundColor: "blue" }
+	        ]
 	    }
-	});
+    });
 }
 
 function main() {
