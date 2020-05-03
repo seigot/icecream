@@ -10,8 +10,9 @@ $(function() {
 	    .text("Bubbles of customer's voice");
 
 	// json
-	var file = '/resource/js/customers_voice.json';
-
+	//var file = '/resource/js/customers_voice.json';
+	var file = 'customers_voice.json';
+	
 	// データをセット
 	d3.json(file, function(json) {
 		var data = json;
