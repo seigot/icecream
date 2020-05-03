@@ -22,8 +22,8 @@ function sample(){
     var getData2;
     var str;
     // 1
-    getData = choose_at_random(tequnique_data);
-    getData2 = choose_at_random(tequnique_data);
+    getData = choose_at_random(tecnique_data);
+    getData2 = choose_at_random(tecnique_data);
     str = getData + "、と、見せかけて、" + getData2;
     console.log(str);
     document.getElementById("area1").innerText = str;
