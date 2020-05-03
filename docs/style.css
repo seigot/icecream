@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+html,
+body {
+  font-family: 'Noto Sans Japanese';
+  color: #333;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.title {
+  font-size: 18px;
+  display: inline-block;
+}
+#content {
+  margin: auto;
+  display: block;
+}
+g {
+  cursor: pointer;
+}
+text {
+  display: block;
+  font-size: 12px;
+  color: #fff;
+}
+.scale {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+}
