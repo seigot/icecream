@@ -68,10 +68,10 @@ function insertionSort(l_lab, l_wei, in_lab, in_weight){
 function getJsonp_GAS() {
 	$.ajax({
 		type: 'GET',
-		url: 'https://script.google.com/macros/s/AKfycbxtd8R0qkp6rfByKkMhCOcLbNqv5A5IYuJhx7DzgRe1_mhe3cY/exec',
+		url: 'https://script.google.com/macros/s/AKfycbznBMEo2nHkAuxk4g4A2-s4gjephq6x7QmFNI0_qA/exec',
 		dataType: 'jsonp',
 		jsonpCallback: 'jsondata',
-		success: function(json){
+		    success: function(json){
 			var label = new Array(0);
 			var weight = new Array(0);
 
@@ -85,7 +85,7 @@ function getJsonp_GAS() {
 			for(let i=0; i < label.length; i++) {
 				label[i] = format_label(label[i]);
 			}
-            drawBarChart(label, weight);
+			drawBarChart(label, weight);
 		}
 	});
 }
@@ -97,7 +97,7 @@ function sendData_GAS(date, weight) {
     $.ajax({
         type: "POST",
         crossDomain: true,
-        url: "https://script.google.com/macros/s/AKfycbxtd8R0qkp6rfByKkMhCOcLbNqv5A5IYuJhx7DzgRe1_mhe3cY/exec",
+	url: 'https://script.google.com/macros/s/AKfycbznBMEo2nHkAuxk4g4A2-s4gjephq6x7QmFNI0_qA/exec',
         data: sendData
     });
 }
