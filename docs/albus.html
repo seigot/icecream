@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
 <meta charset="utf-8">
-<title>サンプル</title>
+<title>Albus Official HP</title>
 <script>
   function getImage(){
   //画像ファイル名を配列で保持
@@ -23,10 +23,55 @@
 </script>
 </head>
 <body>
+<h1>Albus Official HP</h1>
+<div style="width: 50%; height: 50%;">
+    <canvas id="albus_weight2" style="width: 100%; height: 100%;"></canvas>
+</div>
+<input type="button" value="グラフ更新" onclick="getJsonp_GAS()">
+
+<br><br>
+<div style="width:300px; border: 2px solid #000000;">
+    <form id="my-form">
+        データ追加<br>
+        <table>
+            <tr>
+            <td>記入日</td><td>><input type="date" name="date" required /></td>
+            </tr>
+            <tr><td>体重</td><td>><input type="number" name="weight" step="0.1" required /></td>
+            </tr>
+            <tr><td><input type="submit"></td><td id="status"></td></tr>
+        </table>
+    </form>
+</div>
+<br><br>
+<div>
+データは以下からとってきてます。<br>
+<a href="https://docs.google.com/spreadsheets/d/1PFs35Ww9eFqIlg5v75gelgp_RFTjOxzsJbdM_zkpzq8/edit?usp=sharing">こちら</a><br>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./albus_weight2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    // ページ読み込み後の処理 -> SpreadSheetからデータを読み込み、canvasに描画
+    window.onload = function(){
+        getJsonp_GAS();
+    }
+
+    // 送信ボタンを押した際の挙動 -> SpreadSheetへデータを投稿
+    $("form").submit( function(){
+        var valDate = $('#my-form [name=date]').val();
+        var valWeight = $('#my-form [name=weight]').val();
+        sendData_GAS(valDate, valWeight);
+        $("#status").text("送信しました");
+        return false;                       // 遷移無効化
+    });
+</script>
   <input type="button" value="albusボタン" onclick="getImage();">
   <div id="area1"> </div>
   <img id="im1" alt="ここに表示されます。">
   <h5> <h5/>
-  <a href= "https://line.me/S/sticker/6239928" >Albus the dog, line sticker.</a>
+  <a href= "https://line.me/S/sticker/6239928" >Albus the dog, LINE sticker.</a>
 </body>
 </html>
