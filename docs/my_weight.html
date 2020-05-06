@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+<meta charset="utf-8">
+<title>自分の体重とか</title>
+</head>
+<body>
+<h1>自分の体重とか</h1>
+<div style="width: 50%; height: 50%;">
+    <canvas id="my_weight" style="width: 100%; height: 100%;"></canvas>
+</div>
+<input type="button" value="グラフ更新" onclick="getJsonp_GAS()">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./my_weight.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<br><br>
+<div style="width:300px; border: 2px solid #000000;">
+    <form id="my-form">
+        データ追加<br>
+        <table>
+            <tr>
+            <td>記入日</td><td>><input type="date" name="date" required /></td>
+            </tr>
+            <tr><td>体重</td><td>><input type="number" name="weight" step="0.1" required /></td>
+            </tr>
+            <tr><td><input type="submit"></td><td id="status"></td></tr>
+        </table>
+	<div>
+	  <a href="https://docs.google.com/spreadsheets/d/1ISgfogK6yiNBukNFCrwXWAYcsOUNFSqdg6aGO-A8Mic/edit?usp=sharing">引用元データはこちら</a>
+	</div>
+    </form>
+</div>
+<br><br>
+<script>
+    // ページ読み込み後の処理 -> SpreadSheetからデータを読み込み、canvasに描画
+    window.onload = function(){
+        getJsonp_GAS();
+    }
+
+    // 送信ボタンを押した際の挙動 -> SpreadSheetへデータを投稿
+    $("form").submit( function(){
+        var valDate = $('#my-form [name=date]').val();
+        var valWeight = $('#my-form [name=weight]').val();
+        sendData_GAS(valDate, valWeight);
+        $("#status").text("送信しました");
+        return false;                       // 遷移無効化
+    });
+</script>
+</body>
+</html>
