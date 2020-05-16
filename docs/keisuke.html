@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+<meta charset="utf-8">
+<title>keisuke's Weight</title>
+</head>
+<body>
+<h1>keisuke's Weight</h1>
+<div style="width: 50%; height: 50%;">
+    <canvas id="keisuke" style="width: 100%; height: 100%;"></canvas>
+</div>
+<input type="button" value="Update" onclick="getJsonp_GAS()">
+
+<br><br>
+<div style="width:300px; border: 2px solid #000000;">
+    <form id="my-form">
+        データ追加<br>
+        <table>
+            <tr>
+            <td>記入日</td><td>><input type="date" name="date" required /></td>
+            </tr>
+            <tr><td>朝の体重</td><td>><input type="number" name="weight" step="0.1" required /></td>
+            </tr>
+            <tr><td>夜の体重</td><td>><input type="number" name="weight2" step="0.1" required /></td>
+            </tr>
+            <tr><td><input type="submit"></td><td id="status"></td></tr>
+        </table>
+	<div>
+	  <a href="https://docs.google.com/spreadsheets/d/1UsocAJURfR_-x_tJYb8aOByRNgHc41Bt4ZQC2j4885A/edit?usp=sharing">引用元データはこちら</a>
+	</div>
+    </form>
+</div>
+<br><br>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="./keisuke.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    // ページ読み込み後の処理 -> SpreadSheetからデータを読み込み、canvasに描画
+    window.onload = function(){
+        getJsonp_GAS();
+    }
+
+    // 送信ボタンを押した際の挙動 -> SpreadSheetへデータを投稿
+    $("form").submit( function(){
+        var valDate = $('#my-form [name=date]').val();
+        var valWeight = $('#my-form [name=weight]').val();
+        var valWeight2 = $('#my-form [name=weight2]').val();
+        sendData_GAS(valDate, valWeight, valWeight2);
+        $("#status").text("送信しました");
+        return false;                       // 遷移無効化
+    });
+</script>
+</body>
+</html>
