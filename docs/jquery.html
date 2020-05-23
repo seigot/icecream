@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>>jQuery練習</title>
+    <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+</head>
+<body>
+    <p>jQuery練習</p>
+    <ul id="main">
+        <li>main0</li>
+        <li class="item">main1</li>
+        <li class="item">main2</li>
+        <li>
+            main3
+            <ul id="sub">
+                <li class="item" id="itemSub">sub0</li>
+                <li>sub1</li>
+                <li>sub2</li>
+                <li class="item">sub3</li>
+                <li>
+                    sub4
+                    <ul>
+                        <li>4-0</li>
+                    </ul>
+                </li>
+                <li>sub5</li>
+                <li class="item2">sub6</li>
+                <li>sub7</li>
+                <li class="item3">sub8</li>
+            </ul>
+        </li>
+        <li>main4</li>
+    </ul>
+    <script>
+    $(function() {
+       // ここに命令を書く
+    // html要素: p h1 ul
+    $('p').css('color', 'purple');
+
+    // class .className
+    $('.item').css('color', 'red');
+    
+    // id #idName
+    $('#sub').css('color', 'blue');
+    $('#itemSub').css('color', 'yellow');
+    })
+    </script>
+</body>
+</html>
